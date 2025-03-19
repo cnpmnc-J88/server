@@ -1,0 +1,6 @@
+.env.*
+target
+readme.md
+.gitattributes
+.gitignore
+HELP.md

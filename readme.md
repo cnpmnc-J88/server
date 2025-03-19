@@ -1,0 +1,3 @@
+- jdk version: 17
+- spring version: 3.4.3
+- maven version: 3.8.7
