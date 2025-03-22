@@ -10,5 +10,4 @@ import lombok.Setter;
 public class FormRequest {
     private String title;
     private String description;
-
 }
