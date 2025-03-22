@@ -9,7 +9,7 @@ class AppApplicationTests {
 
 	@Test
 	void contextLoads() {
-		assertEquals(1+1, 4);
+		assertEquals(1+1, 2);
 	}
 
 }
