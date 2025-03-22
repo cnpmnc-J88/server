@@ -61,20 +61,4 @@ public class AnswerController {
 
             return ResponseEntity.ok(history);
     }
-
-    @GetMapping("/{history_id}")
-    public ResponseEntity<?> getAnswers(
-            @PathVariable String history_id
-    ) {
-        try {
-            History history = historyRepository.findById(Integer.parseInt(history_id))
-                    .orElseThrow(() -> new Exception("history not found with ID:"));
-
-            List<Answer> answer = answerRepository.getByHistory(history);
-
-            return ResponseEntity.ok(answer);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
 }
