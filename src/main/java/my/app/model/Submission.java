@@ -10,4 +10,7 @@ public class Submission {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Form form;
 }

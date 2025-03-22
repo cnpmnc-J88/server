@@ -12,4 +12,12 @@ public class Label {
     private Form form;
 
     private String content;
+
+    public Label(
+            Form form,
+            String content
+    ) {
+        this.form = form;
+        this.content = content;
+    }
 }
