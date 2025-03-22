@@ -21,6 +21,6 @@ public class FormService {
         form.setUser(GenTestUser.genUser());
         formRepository.save(form);
 
-        return ResponseEntity.ok(form);
+        return null;
     }
 }
