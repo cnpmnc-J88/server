@@ -1,6 +1,7 @@
 package my.app.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 
@@ -20,12 +21,17 @@ public class Form {
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private User user;
 
     private String title;
     private String description;
 
+    @OneToMany(mappedBy = "form", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Label> label;
+
     @Column(name = "create_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", updatable = false)
+
     private LocalDateTime createDate;
 
     public int getId() {
@@ -70,5 +76,6 @@ public class Form {
 
     @OneToMany
     List<Assessment> assessments;
+
 
 }
