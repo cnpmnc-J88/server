@@ -28,7 +28,6 @@ jobs:
 #        run: mvn test -DskipTests=false
 
   build:
-    needs: test
     runs-on: ubuntu-latest
     environment: docker-build
     steps:
