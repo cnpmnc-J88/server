@@ -3,7 +3,7 @@ package my.app.DTO;
 public class FormRequest {
     private String title;
     private String description;
-<<<<<<< HEAD
+
 
     // Constructor
     public FormRequest(String title, String description) {
@@ -30,6 +30,5 @@ public class FormRequest {
     public void setDescription(String description) {
         this.description = description;
     }
-=======
->>>>>>> a06f60e8dd526c8be481cfe7fbde59bbfa42684d
+
 }

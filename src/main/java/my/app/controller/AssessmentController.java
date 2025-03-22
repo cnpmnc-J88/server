@@ -5,10 +5,7 @@ import my.app.DTO.AssessmentDTO;
 import my.app.DTO.FormRequest;
 import my.app.service.AssessmentService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AssessmentController {
@@ -22,5 +19,10 @@ public class AssessmentController {
     @PostMapping("/create_assessment")
     public ResponseEntity<?> createAssessment(@RequestParam Long formID){
         return assessmentService.createAssessment(formID);
+    }
+
+    @GetMapping("/get_assessment")
+    public ResponseEntity<?> getAssessment(@RequestParam Long formID){
+        return assessmentService.getAssessment(formID);
     }
 }

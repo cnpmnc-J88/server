@@ -26,11 +26,7 @@ public class FormController {
     public ResponseEntity<?> createForm(@ModelAttribute FormRequest formRequest){
         return formService.createForm(formRequest);
     }
-<<<<<<< HEAD
 
-}
-=======
->>>>>>> a06f60e8dd526c8be481cfe7fbde59bbfa42684d
 
     @PostMapping("/create_label/{form_id}")
     public ResponseEntity<?> createLabel(
@@ -56,18 +52,15 @@ public class FormController {
         }
     }
 
-    @GetMapping("/form")
-    public ResponseEntity<?> getForm(@RequestParam(defaultValue = "0") Integer page ) {
-        try {
-            Pageable pageable = PageRequest.of(page, 10);
-            Page<Form> forms = formRepository.findByUser(
-                    GenTestUser.genUser(),
-                    pageable
-            );
-
-            return  ResponseEntity.ok().body(forms);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
+//    @GetMapping("/form")
+//    public ResponseEntity<?> getForm(@RequestParam(defaultValue = "0") Integer page ) {
+//        try {
+//            Pageable pageable = PageRequest.of(page, 10);
+//
+//
+//            return  ResponseEntity.ok().body(forms);
+//        } catch (Exception e) {
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//    }
 }
