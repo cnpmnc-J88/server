@@ -2,14 +2,14 @@ package my.app.model;
 
 import jakarta.persistence.*;
 
-@Entity(name = "labels")
-public class Label {
+@Entity(name = "contents")
+public class Content {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Form form;
+    private Label label;
 
     private String content;
 }

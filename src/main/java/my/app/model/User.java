@@ -1,9 +1,15 @@
 package my.app.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "users")
+@AllArgsConstructor
+@Getter
+@NoArgsConstructor
 public class User {
     @Id
     @Column(nullable = false)
