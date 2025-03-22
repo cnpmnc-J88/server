@@ -9,6 +9,7 @@ public class Label {
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "form_id")
     private Form form;
 
     private String content;
@@ -19,5 +20,9 @@ public class Label {
     ) {
         this.form = form;
         this.content = content;
+    }
+
+    public Label() {
+
     }
 }

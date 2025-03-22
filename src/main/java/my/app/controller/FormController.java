@@ -9,11 +9,11 @@ import my.app.model.Label;
 import my.app.repository.IFormRepository;
 import my.app.repository.ILabelRepository;
 import my.app.service.FormService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
@@ -33,7 +33,7 @@ public class FormController {
             @ModelAttribute LabelDTORequest labelDTORequest
     ){
         try {
-            if(labelDTORequest.getContent() != null){
+            if(labelDTORequest.getContent() == null){
                 throw new Exception("undified content");
             }
 
@@ -50,16 +50,19 @@ public class FormController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @GetMapping("/form")
+    public ResponseEntity<?> getForm(@RequestParam(defaultValue = "0") Integer page ) {
+        try {
+            Pageable pageable = PageRequest.of(page, 10);
+            Page<Form> forms = formRepository.findByUser(
+                    GenTestUser.genUser(),
+                    pageable
+            );
+
+            return  ResponseEntity.ok().body(forms);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }
-
-
-//@RequestMapping("/api/forms")
-//public class FormController {
-//
-//    @Autowired
-//    private FormService formService;
-//
-//    @PostMapping("/create")
-//    public Form createForm() {
-//        return formService.createForm();
-//    }
