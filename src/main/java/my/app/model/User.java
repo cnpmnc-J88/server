@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 @AllArgsConstructor
@@ -17,4 +19,7 @@ public class User {
 
     @Column(unique = true, nullable = false)
     private String password;
+
+    @OneToMany
+    List<Form>  forms;
 }
