@@ -1,58 +1,23 @@
 package my.app.models;
 
 import jakarta.persistence.*;
-
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "assessment")
 public class Assessment {
-    public Form getForm() {
-        return form;
-    }
-
-    public void setForm(Form form) {
-        this.form = form;
-    }
-
-
-
-    public Long getRating() {
-        return rating;
-    }
-
-    public void setRating(Long rating) {
-        this.rating = rating;
-    }
-
-    public LocalDate getEvaluationDate() {
-        return evaluationDate;
-    }
-
-    public void setEvaluationDate(LocalDate evaluationDate) {
-        this.evaluationDate = evaluationDate;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "assID")
@@ -77,19 +42,14 @@ public class Assessment {
     @Column(name = "status")
     private String status;
 
-    public String getStatus() {
-        return status;
-    }
+    @ManyToOne
+    @JoinColumn(name = "ass_owner", referencedColumnName = "email", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private User user;
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
-    public Long getAssID() {
-        return assID;
-    }
+    
 
-    public void setAssID(Long assID) {
-        this.assID = assID;
-    }
+   
 }

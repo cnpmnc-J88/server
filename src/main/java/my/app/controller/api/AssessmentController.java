@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api")
@@ -15,8 +17,12 @@ public class AssessmentController {
     @Autowired
     private AssessmentService assessmentService;
     @PostMapping("/create_assessment")
-    public ResponseEntity<?> create_assessment(@RequestParam Integer formID, @ModelAttribute AssessmentDTO assessmentDTO) {
-        return assessmentService.createassessment(formID,assessmentDTO);
+    public ResponseEntity<?> create_assessment(@RequestParam Integer formID, 
+    @ModelAttribute AssessmentDTO assessmentDTO,
+    HttpServletRequest request) {
+        String email = (String) request.getAttribute("email");
+        
+        return assessmentService.createassessment(formID,assessmentDTO,email);
 
     }
 

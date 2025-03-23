@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "form")
 @Getter
-
+@NoArgsConstructor
 
 public class Form {
     @Id
@@ -34,9 +34,7 @@ public class Form {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private User user;
-    public Form() {
-        // Constructor mặc định cho Hibernate
-    }
+   
     public Form(
             String form_name,
             String form_description,
@@ -48,5 +46,6 @@ public class Form {
     }
 
     @OneToMany(mappedBy = "form", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Assessment> assessments = new ArrayList<>();
 }
