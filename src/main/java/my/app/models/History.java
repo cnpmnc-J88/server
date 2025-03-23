@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Table(name="history")
 @Getter
 @Setter
-@NoArgsConstructor
+
 @AllArgsConstructor
 public class History {
     @Id
@@ -46,5 +46,8 @@ public class History {
     ) {
         this.form = form;
         this.user = user;
+    }
+    public History(){
+
     }
 }

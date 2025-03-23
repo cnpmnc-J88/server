@@ -10,7 +10,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "label")
-@NoArgsConstructor
+
 @Getter
 public class Label {
     @Id
@@ -26,6 +26,7 @@ public class Label {
     @JsonIgnore
     private Form form;
 
+
     public Label(
             String label_name ,
             Form form
@@ -33,4 +34,7 @@ public class Label {
         this.label_name = label_name;
         this.form = form;
     }
+    public Label(){}
+
+
 }

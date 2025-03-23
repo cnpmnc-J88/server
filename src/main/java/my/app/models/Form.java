@@ -5,17 +5,23 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "form")
 @Getter
-@NoArgsConstructor
+
+
 public class Form {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id") // Đảm bảo cột này trùng với tên cột trong database
+    private Long id;
 
     @Column(name = "form_name", nullable = false, length = 50)
     private String form_name;
@@ -28,7 +34,9 @@ public class Form {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private User user;
-
+    public Form() {
+        // Constructor mặc định cho Hibernate
+    }
     public Form(
             String form_name,
             String form_description,
@@ -38,4 +46,7 @@ public class Form {
         this.form_description = form_description;
         this.user = user;
     }
+
+    @OneToMany(mappedBy = "form", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Assessment> assessments = new ArrayList<>();
 }

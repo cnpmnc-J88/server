@@ -10,7 +10,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name = "answer")
 @Getter
-@NoArgsConstructor
+
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +35,8 @@ public class Answer {
         this.content = content;
         this.label = label;
         this.history = history;
+    }
+    public Answer(){
+
     }
 }
