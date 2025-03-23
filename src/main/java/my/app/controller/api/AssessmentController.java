@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+import java.util.List;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api")
@@ -28,13 +30,14 @@ public class AssessmentController {
 
 
     @GetMapping("/getassessment/{id}")
-    public ResponseEntity<Assessment> getAssessmentById(@PathVariable Integer id) {
-        Assessment assessment = assessmentService.getAssessmentById(id);
-        if (assessment != null) {
-            return ResponseEntity.ok(assessment);
+    public ResponseEntity<List<AssessmentDTO>> getAssessmentsByFormId(@PathVariable Integer id) {
+        List<AssessmentDTO> assessments = assessmentService.getAssessmentsByFormId(id);
+        if (assessments != null && !assessments.isEmpty()) {
+            return ResponseEntity.ok(assessments); // Return the list of assessments
         } else {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build(); // Return 404 if no assessments are found
         }
     }
+
 
 }

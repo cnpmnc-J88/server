@@ -46,6 +46,7 @@ public class FormController {
                             () -> new Exception("User not found with email: " + email)
                     )
             );
+            form.setlabels();
 
             formRepository.save(form);
 

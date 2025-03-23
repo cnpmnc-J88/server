@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "form")
 @Getter
-@NoArgsConstructor
+
 
 public class Form {
     @Id
@@ -44,8 +44,65 @@ public class Form {
         this.form_description = form_description;
         this.user = user;
     }
+    public Form(){
 
+    }
     @OneToMany(mappedBy = "form", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Assessment> assessments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "form", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Label> labels = new ArrayList<>();
+
+    public void setLabels(List<Label> labels) {
+        this.labels = labels;
+    }
+    public void setlabels(){
+
+    }
+
+    public List<Label> getLabels() {
+        return labels;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getForm_name() {
+        return form_name;
+    }
+
+    public void setForm_name(String form_name) {
+        this.form_name = form_name;
+    }
+
+    public String getForm_description() {
+        return form_description;
+    }
+
+    public void setForm_description(String form_description) {
+        this.form_description = form_description;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Assessment> getAssessments() {
+        return assessments;
+    }
+
+    public void setAssessments(List<Assessment> assessments) {
+        this.assessments = assessments;
+    }
 }

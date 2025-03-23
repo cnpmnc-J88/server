@@ -8,5 +8,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AssessmentRepository  extends JpaRepository<Assessment, Long> {
-    List<Assessment> findAllByForm_Id(Integer formId);
+    List<Assessment> findAllByFormId(Integer formId);
 }

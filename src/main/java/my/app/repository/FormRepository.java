@@ -12,4 +12,6 @@ public interface FormRepository extends JpaRepository<Form, Integer> {
     Page<Form> findAll(Pageable pageable);
 
     List<Form> findByUser(User user);
+
+    List<Form> findAllById(Integer formID);
 }

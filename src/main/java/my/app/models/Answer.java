@@ -12,6 +12,38 @@ import org.hibernate.annotations.OnDeleteAction;
 @Getter
 
 public class Answer {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Label getLabel() {
+        return label;
+    }
+
+    public void setLabel(Label label) {
+        this.label = label;
+    }
+
+    public History getHistory() {
+        return history;
+    }
+
+    public void setHistory(History history) {
+        this.history = history;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore

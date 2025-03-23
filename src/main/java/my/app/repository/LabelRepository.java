@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface LabelRepository extends JpaRepository<Label, String> {
     List<Label> findByForm(Form form);
+    List<Label> findByForm_Id(Integer formID);
 }

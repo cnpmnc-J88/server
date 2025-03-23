@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface AnswerRepository extends JpaRepository<Answer, Integer> {
     List<Answer> getByHistory(History history);
+    List<Answer> findAllByLabel_Id(Integer labelId); // Sửa thành tìm theo ID của Label
 }

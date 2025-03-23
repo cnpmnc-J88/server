@@ -1,12 +1,13 @@
 package my.app.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import jakarta.persistence.Column;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -24,8 +25,19 @@ public class User {
         this.email = email;
         this.displayName = username;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public User() {
         // Constructor mặc định
     }
+    @OneToMany(mappedBy = "user")  // Liên kết với "user" trong Assessment
+    private List<Assessment> assessments;
 
 }
