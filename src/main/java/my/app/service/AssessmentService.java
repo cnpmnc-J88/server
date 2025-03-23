@@ -36,7 +36,7 @@ public class AssessmentService {
             if (existingForm.isPresent()) {
                 Form form = existingForm.get();
 
-                // Tạo đối tượng Assessment
+
                 Assessment assessment = new Assessment(userRepository.findByEmail(email).orElseThrow(
                         () -> new Exception("User not found with email: " + email)
                 ));
@@ -53,7 +53,7 @@ public class AssessmentService {
                 return ResponseEntity.status(404).body("Form not found");
             }
         } catch (Exception e) {
-            // Xử lý ngoại lệ
+
             return ResponseEntity.status(500).body("Error: " + e.getMessage());
         }
 
@@ -66,39 +66,38 @@ public class AssessmentService {
 //    }
 
     public List<AssessmentDTO> getAssessmentsByFormId(Integer formId) {
-        // Lấy danh sách các Assessment theo form_id
+        //
         List<Assessment> assessments = assessmentRepository.findAllByFormId(formId);
         if (assessments.isEmpty()) {
-            return null; // Trả về null nếu không có Assessment nào
+            return null;
         }
 
         List<AssessmentDTO> assessmentDTOs = new ArrayList<>();
 
-        // Duyệt qua tất cả các Assessment
+
         for (Assessment assessment : assessments) {
-            // Lấy các Label liên kết với Form từ mỗi Assessment
             List<String> labelNames = new ArrayList<>();
-            // Sử dụng findAllByFormId nếu bạn muốn lấy các Label từ Form
+
             List<Label> labels = labelRepository.findByForm_Id(formId);
 
             for (Label label : labels) {
-                labelNames.add(label.getLabel_name()); // Lấy tên của mỗi label
+                labelNames.add(label.getLabel_name());
             }
 
-            // Lấy các Answer dựa trên từng Label
+
             List<String> answers = new ArrayList<>();
             for (Label label : labels) {
-                // Tìm Answer dựa trên label_id
+
                 List<Answer> labelAnswers = answerRepository.findAllByLabel_Id(label.getId()); // Tìm các Answer liên kết với Label
                 for (Answer answer : labelAnswers) {
-                    answers.add(answer.getContent());  // Lấy nội dung của Answer
+                    answers.add(answer.getContent());
                 }
             }
 
-            // Chuyển đổi Assessment thành AssessmentDTO
+
             AssessmentDTO assessmentDTO = new AssessmentDTO(
                     assessment.getAssID(),
-                    assessment.getForm().getId().intValue(), // Lấy formId từ Form liên kết
+                    assessment.getForm().getId().intValue(),
                     assessment.getRating(),
                     assessment.getEvaluationDate().toString(),
                     assessment.getComment(),
@@ -108,11 +107,11 @@ public class AssessmentService {
                     answers
             );
 
-            // Thêm AssessmentDTO vào danh sách trả về
+
             assessmentDTOs.add(assessmentDTO);
         }
 
-        // Trả về danh sách các AssessmentDTO
+
         return assessmentDTOs;
     }
 
