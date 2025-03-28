@@ -1,4 +1,7 @@
 spring:
+    sql:
+        init:
+            mode: always
     config:
         import: optional:file:src/main/resources/.env[.properties]
     application:
