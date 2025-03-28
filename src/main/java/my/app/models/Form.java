@@ -29,6 +29,9 @@ public class Form {
     @Column(name = "form_description", nullable = false, length = 50)
     private String form_description;
 
+    @Column(name = "former_position")
+    private String former_position;
+
     @ManyToOne
     @JoinColumn(name = "form_owner", referencedColumnName = "email", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)

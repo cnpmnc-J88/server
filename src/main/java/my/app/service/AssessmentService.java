@@ -45,7 +45,7 @@ public class AssessmentService {
                 assessment.setEvaluationDate(LocalDate.now());
                 assessment.setComment(assessmentDTO.getComment());
                 assessment.setStatus(assessmentDTO.getStatus());
-                assessment.setImage(assessmentDTO.getImage());
+                assessment.setAssessor_position(assessmentDTO.getAssessor_position());
                 assessmentRepository.save(assessment);
 
                 return ResponseEntity.ok("Assessment created successfully");
@@ -78,6 +78,7 @@ public class AssessmentService {
         for (Assessment assessment : assessments) {
             List<String> labelNames = new ArrayList<>();
             String formOwnerEmail = assessment.getForm().getUser() != null ? assessment.getForm().getUser().getEmail() : null;
+            String formerposition = assessment.getForm().getFormer_position();
             List<Label> labels = labelRepository.findByForm_Id(formId);
 
             for (Label label : labels) {
@@ -103,10 +104,14 @@ public class AssessmentService {
                     assessment.getComment(),
                     assessment.getStatus(),
                     assessment.getUser().getEmail(),
+                    assessment.getAssessor_position(),
                     labelNames,
                     answers
             );
+
             assessmentDTO.setFormemail(formOwnerEmail);
+            assessmentDTO.setFormerposition(formerposition);
+
 
             assessmentDTOs.add(assessmentDTO);
         }

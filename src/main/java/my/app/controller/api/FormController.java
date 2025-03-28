@@ -34,6 +34,7 @@ public class FormController {
     public ResponseEntity<?> form(
             @RequestParam(required=true) String form_name,
             @RequestParam(required=true) String form_description,
+            @RequestParam(required=true) String former_position,
             HttpServletRequest request
     ) {
         try {
@@ -46,6 +47,7 @@ public class FormController {
                             () -> new Exception("User not found with email: " + email)
                     )
             );
+            form.setFormer_position(former_position);
             form.setlabels();
 
             formRepository.save(form);

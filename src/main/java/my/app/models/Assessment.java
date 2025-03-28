@@ -36,11 +36,12 @@ public class Assessment {
     @Column(name = "comment")
     private String comment;
 
-    @Column(name = "image")
-    private String image;
 
     @Column(name = "status")
     private String status;
+
+    @Column(name = "assessor_position")
+    private String assessor_position;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ass_owner", referencedColumnName = "email", nullable = false)
@@ -91,13 +92,7 @@ public class Assessment {
         this.comment = comment;
     }
 
-    public String getImage() {
-        return image;
-    }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
 
     public String getStatus() {
         return status;
