@@ -19,6 +19,9 @@ public class AuthController {
     @Autowired
     UserRepository userRepository;
 
+    @Value("${RECEIVE_TOKEN_URL}")
+    private String ReceiveTokenUrl;
+
     @Value("${env.client_id}")
     private String clientId;
 
@@ -86,9 +89,9 @@ public class AuthController {
                 String access_token = jsonNode.get("access_token").asText();
                 String refresh_token = jsonNode.get("refresh_token").asText();
 
-                return new RedirectView("/auth/receive?access_token=" + access_token + "&refresh_token=" + refresh_token);
+                return new RedirectView(ReceiveTokenUrl + "/auth/receive?access_token=" + access_token + "&refresh_token=" + refresh_token);
             } else {
-                return new RedirectView(redirectUrl + "/auth/receive?access_token=" + null + "&refresh_token=" + null);
+                return new RedirectView(ReceiveTokenUrl + redirectUrl + "/auth/receive?access_token=" + null + "&refresh_token=" + null);
             }
         } catch (Exception e) {
             return new RedirectView(redirectUrl + "/auth/receive?access_token=" + null + "&refresh_token=" + null);

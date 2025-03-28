@@ -34,3 +34,4 @@ env:
     client_id: ${CLIENT_ID}
     client_secret: ${CLIENT_SECRET}
     redirect_url: ${REDIRECT_URL}
+    receive_token_url: ${RECEIVE_TOKEN_URL}
