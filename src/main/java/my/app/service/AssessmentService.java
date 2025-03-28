@@ -77,7 +77,7 @@ public class AssessmentService {
 
         for (Assessment assessment : assessments) {
             List<String> labelNames = new ArrayList<>();
-
+            String formOwnerEmail = assessment.getForm().getUser() != null ? assessment.getForm().getUser().getEmail() : null;
             List<Label> labels = labelRepository.findByForm_Id(formId);
 
             for (Label label : labels) {
@@ -106,7 +106,7 @@ public class AssessmentService {
                     labelNames,
                     answers
             );
-
+            assessmentDTO.setFormemail(formOwnerEmail);
 
             assessmentDTOs.add(assessmentDTO);
         }

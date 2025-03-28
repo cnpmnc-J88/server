@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "form")
 @Getter
-
+@Setter
 
 public class Form {
     @Id
