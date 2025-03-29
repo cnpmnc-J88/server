@@ -1,4 +1,16 @@
 spring:
+    mail:
+        host: ${SMTP_HOST}
+        port: ${SMTP_PORT}
+        username: ${SMTP_USERNAME}
+        password: ${SMTP_PASSWD}
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    starttls:
+                        enable: true
+                        required: true
     sql:
         init:
             mode: always

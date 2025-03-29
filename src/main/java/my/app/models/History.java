@@ -24,7 +24,6 @@ public class History {
 
     @ManyToOne
     @JoinColumn(name = "user_email", referencedColumnName = "email", nullable = false)
-    @JsonIgnore
     private User user;
 
     @ManyToOne

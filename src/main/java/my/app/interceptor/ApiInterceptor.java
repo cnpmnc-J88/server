@@ -50,7 +50,7 @@ public class ApiInterceptor implements HandlerInterceptor {
             }
         } catch (Exception e) {
             System.out.println(e);
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, e.getMessage());
         }
 
         return false;
