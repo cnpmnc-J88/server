@@ -1,5 +1,6 @@
 package my.app.service;
 
+import lombok.AllArgsConstructor;
 import my.app.dto.AssessmentDTO;
 import my.app.models.*;
 import my.app.repository.*;
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+@AllArgsConstructor
 @Service
 public class AssessmentService {
     @Autowired
@@ -29,6 +30,8 @@ public class AssessmentService {
     private AnswerRepository answerRepository;
     @Autowired
     private LabelRepository labelRepository;
+
+    private MailService mailService;
     public ResponseEntity<?> createassessment(Integer formID, AssessmentDTO assessmentDTO, String email){
 
         try {
@@ -45,6 +48,7 @@ public class AssessmentService {
                 assessment.setEvaluationDate(LocalDate.now());
                 assessment.setComment(assessmentDTO.getComment());
                 assessment.setStatus(assessmentDTO.getStatus());
+                mailService.sendEmail(form.getUseremail(), "Danh gia form", "Vao xem form danh gia cai thien gi");
                 assessment.setAssessor_position(assessmentDTO.getAssessor_position());
                 assessmentRepository.save(assessment);
 

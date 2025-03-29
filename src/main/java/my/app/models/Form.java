@@ -37,6 +37,10 @@ public class Form {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private User user;
+
+    public String getUseremail() {
+        return user.getEmail();
+    }
    
     public Form(
             String form_name,
