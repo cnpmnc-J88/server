@@ -54,6 +54,7 @@ public class FormController {
 
             return ResponseEntity.ok(form);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return ResponseEntity.status(400).body(e.getMessage());
         }
     }
