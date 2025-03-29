@@ -9,9 +9,10 @@ public class CorsConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("http://localhost:3000/**")
-                .allowedOrigins("*")
+        registry.addMapping("/**") // Cho phép tất cả API của backend
+                .allowedOrigins("http://localhost:3000") // Chỉ cho phép frontend truy cập
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("*");
+                .allowedHeaders("*")
+                .allowCredentials(true); // Nếu frontend có gửi cookie/session
     }
 }
