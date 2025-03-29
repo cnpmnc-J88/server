@@ -22,8 +22,11 @@ public class History {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private String email;
+
     @ManyToOne
     @JoinColumn(name = "user_email", referencedColumnName = "email", nullable = false)
+    @JsonIgnore
     private User user;
 
     @ManyToOne
@@ -45,6 +48,7 @@ public class History {
     ) {
         this.form = form;
         this.user = user;
+        this.email = user.getEmail();
     }
     public History(){
 
